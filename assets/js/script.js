@@ -1,6 +1,24 @@
-const currentDate = dayjs();
-const dateFormat = currentDate.format("MM, DD, YYYY, HH:mm:ss");
-document.getElementById("currentDay").innerHTML = currentDate
+var currentDate = new Date();
+
+var currentYear = currentDate.getFullYear();
+var currentMonth = currentDate.getMonth();
+var currentDay = currentDate.getDate();
+
+document.getElementById("currentDayTime").innerHTML = currentDate
+
+
+document.querySelectorAll(".timeblock").forEach(timeblock => {
+  const hour = parseInt(timeblock.id.split("-")[1]);
+  const timeblockDate = new Date(currentYear, currentMonth, currentDay, hour, 0, 0);
+
+if(timeblockDate < currentDate) {
+  timeblock.style.backgroundColor = "#d3d3d3";
+} else if (timeblockDate.getHours() === currentHour) {
+  timeblock.style.backgroundColor = "#ff6961";
+} else {
+  timeblock.style.backgroundColor = "#77dd77";
+}
+});
 
 $(document).ready(function () {
   // TODO: Add a listener for click events on the save button. This code should
