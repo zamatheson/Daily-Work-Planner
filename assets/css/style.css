@@ -6,6 +6,7 @@ body {
 
 .timeblock {
   border: 3px solid white;
+  padding: 0px;
 }
 
 
@@ -15,7 +16,9 @@ textarea {
   resize: none;
   color: #000000;
   padding: 10px;
-  margin: auto;
+  vertical-align: middle;
+  margin-right: 150px;
+  width: 1145px;
 }
 
 .description {
@@ -52,11 +55,13 @@ textarea {
 }
 
 .saveBtn {
-  border-left: 1px solid black;
+  vertical-align: middle;
+  border-left: 1px solid #06aed5;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
+  padding: 25px;
 }
 
 .saveBtn i:hover {
