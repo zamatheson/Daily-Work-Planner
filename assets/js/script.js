@@ -1,34 +1,39 @@
-// date and time variables.
-var currentDate = new Date();
-var currentHour = currentDate.getHours();
+$(document).ready(function(){
+  // pull current day and time using dayjs
+  var currentDayTime = dayjs().format('MM-DD-YY HH:mm:ss');
 
-var currentYear = currentDate.getFullYear();
-var currentMonth = currentDate.getMonth();
-var currentDay = currentDate.getDate();
+  $('#currentDayTime').text(currentDayTime);
+  
+  var currentHour = dayjs().hour();
 
-// display current date and time at the top of the page.
-document.getElementById("currentDayTime").innerHTML = currentDate
+// display color-coded timeblocks according to past, present and future times
+  document.querySelectorAll(".timeblock").forEach(timeblock => {
+    const hour = parseInt(timeblock.id.split("-")[1]);
+    const timeblockDate = dayjs().hour(hour).minute(0).second(0);
 
-
-// display color-coded timeblocks according to past, present and future times.
-document.querySelectorAll(".timeblock").forEach(timeblock => {
-  const hour = parseInt(timeblock.id.split("-")[1]);
-  const timeblockDate = new Date(currentYear, currentMonth, currentDay, hour, 0, 0);
-
-if(timeblockDate < currentDate) {
-  $(timeblock).addClass("past");
-} else if (timeblockDate.getHours() === currentHour) {
-  $(timeblock).addClass("present");
-} else {
-  $(timeblock).addClass("future");
-}
+    if(timeblockDate.isBefore(currentDayTime, 'hour')) {
+      $(timeblock).addClass("past"); 
+    } else if (timeblockDate.isSame(currentDayTime, 'hour')) {
+      $(timeblock).addClass("present");
+    } else {
+      $(timeblock).addClass("future");
+    }
+  });
 });
 
-// save text input into local stoage to manage schedule. 
-const saveButton = document.querySelector(".saveBtn");
+// save text input into local stoage to manage schedule 
+const saveButton = document.querySelectorAll(".saveBtn");
 
-saveButton.addEventListener("click", function() {
-  const scheduleMsg = document.querySelector(".textBox").value;
-  localStorage.setItem("scheduleMsg", scheduleMsg);
-  alert("Scheduled Saved");
-})
+saveButton.forEach(function(saveButton) {
+
+  saveButton.addEventListener("click", function() {
+
+    const timeBlock = saveButton.closest(".timeblock");
+    const textBox = timeBlock.querySelector(".textBox");
+    const scheduleMsg = textBox.value;
+    const timeBlockId = timeBlock.id;
+
+    localStorage.setItem(timeBlockId, scheduleMsg);
+    alert("Scheduled Saved");
+  });
+});

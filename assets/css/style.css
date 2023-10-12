@@ -17,8 +17,8 @@ textarea {
   color: #000000;
   padding: 10px;
   vertical-align: middle;
-  margin-right: 150px;
-  width: 1145px;
+  margin-right: 270px;
+  width: 75%;
 }
 
 .description {
@@ -35,7 +35,7 @@ textarea {
 }
 
 .hour {
-  background-color: #06aed5;
+  background-color: #7a82ef;
   color: white;
 }
 
@@ -45,21 +45,21 @@ textarea {
 }
 
 .present {
-  background-color: #ff6961;
+  background-color: #f0bcbc;
   color: white;
 }
 
 .future {
-  background-color: #77dd77;
+  background-color: #b2ebb2;
   color: white;
 }
 
 .saveBtn {
   vertical-align: middle;
-  border-left: 1px solid #06aed5;
+  border-left: 1px solid #7a82ef;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #06aed5;
+  background-color: #7a82ef;
   color: white;
   padding: 25px;
 }
